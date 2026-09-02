@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar Store MVP - 4 Tabs System</title>
+    <title>Bar Store MVP - Pre-Order System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -19,11 +19,11 @@
         <!-- App Header -->
         <header class="bg-slate-900 border-b border-slate-800 px-4 py-3 flex justify-between items-center z-30">
             <div class="flex items-center gap-2">
-                <span class="text-amber-500 font-bold text-base">🍻 Bar Store</span>
-                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">Phitsanulok</span>
+                <span class="text-sky-400 font-bold text-base">🍻 Bar Store</span>
+                <span class="text-[9px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded-full">Phitsanulok</span>
             </div>
             <div id="topStoreSelectorContainer" class="hidden">
-                <select id="selectMerchantStore" onchange="changeMerchantStore(this.value)" class="bg-slate-950 border border-slate-800 text-[10px] text-amber-400 rounded-lg px-2 py-1 focus:outline-none">
+                <select id="selectMerchantStore" onchange="changeMerchantStore(this.value)" class="bg-slate-950 border border-slate-800 text-[10px] text-sky-400 rounded-lg px-2 py-1 focus:outline-none">
                     <!-- Dynamic Store Options -->
                 </select>
             </div>
@@ -35,9 +35,9 @@
             <!-- TAB 1: CUSTOMER HOME -->
             <div id="viewCustomerHome" class="space-y-4">
                 <div class="space-y-2">
-                    <input type="text" id="searchInput" onkeyup="filterPubs()" placeholder="🔍 ค้นหาชื่อร้านเหล้า, โซนในพิษณุโลก..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500 text-slate-200">
+                    <input type="text" id="searchInput" onkeyup="filterPubs()" placeholder="🔍 ค้นหาชื่อร้านเหล้า, โซนในพิษณุโลก..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-sky-500 text-slate-200">
                     <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 text-[11px]">
-                        <button onclick="filterZone('all')" class="bg-amber-500 text-slate-950 px-3 py-1 rounded-lg font-semibold whitespace-nowrap">ทั้งหมด</button>
+                        <button onclick="filterZone('all')" class="bg-sky-500 text-slate-950 px-3 py-1 rounded-lg font-semibold whitespace-nowrap">ทั้งหมด</button>
                         <button onclick="filterZone('ม.นเรศวร')" class="bg-slate-900 border border-slate-800 text-slate-300 px-3 py-1 rounded-lg whitespace-nowrap">โซน ม.นเรศวร</button>
                         <button onclick="filterZone('ริมน้ำ')" class="bg-slate-900 border border-slate-800 text-slate-300 px-3 py-1 rounded-lg whitespace-nowrap">โซนริมน้ำน่าน</button>
                         <button onclick="filterZone('ในเมือง')" class="bg-slate-900 border border-slate-800 text-slate-300 px-3 py-1 rounded-lg whitespace-nowrap">โซนตัวเมือง</button>
@@ -49,15 +49,108 @@
                 </div>
             </div>
 
-            <!-- SUB-VIEW: TABLE SELECTION (For Customer) -->
+            <!-- TAB 2: DRINK PRICE LIST -->
+            <div id="viewDrinkPrices" class="hidden space-y-4">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-1">
+                    <h3 class="text-sm font-bold text-sky-400">🍾 ราคาเครื่องดื่ม & มิกเซอร์</h3>
+                    <p class="text-[10px] text-slate-400">เมนูมาตรฐานและราคากลางสำหรับ Pre-Order ทุกร้านในเครือ</p>
+                </div>
+
+                <!-- Category 1: Whiskey & Brandy -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
+                    <h4 class="text-xs font-bold text-cyan-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                        <span>🥃</span> วิสกี้ & บรั่นดี (พร้อมเซตมิกเซอร์)
+                    </h4>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                            <div>
+                                <div class="text-xs font-semibold text-slate-200">SangSom (แสงโสม 0.7L)</div>
+                                <div class="text-[10px] text-slate-400">+ ฟรีมิกเซอร์ 4 ขวด</div>
+                            </div>
+                            <span class="text-xs font-bold text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-1 rounded-lg">490 ฿</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                            <div>
+                                <div class="text-xs font-semibold text-slate-200">Regency (รีเจนซี่ แบน)</div>
+                                <div class="text-[10px] text-slate-400">+ ฟรีมิกเซอร์ 3 ขวด</div>
+                            </div>
+                            <span class="text-xs font-bold text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-1 rounded-lg">580 ฿</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                            <div>
+                                <div class="text-xs font-semibold text-slate-200">Blend 286 (บล็อนด์ 0.7L)</div>
+                                <div class="text-[10px] text-slate-400">+ ฟรีมิกเซอร์ 4 ขวด</div>
+                            </div>
+                            <span class="text-xs font-bold text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-1 rounded-lg">450 ฿</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Beer -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
+                    <h4 class="text-xs font-bold text-cyan-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                        <span>🍺</span> เบียร์ชุดโปรโมชัน
+                    </h4>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                            <div>
+                                <div class="text-xs font-semibold text-slate-200">Leo Beer (เบียร์ลีโอ)</div>
+                                <div class="text-[10px] text-slate-400">โปรโมชันชุด 3 ขวดใหญ่</div>
+                            </div>
+                            <span class="text-xs font-bold text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-1 rounded-lg">285 ฿</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                            <div>
+                                <div class="text-xs font-semibold text-slate-200">Singha Beer (เบียร์สิงห์)</div>
+                                <div class="text-[10px] text-slate-400">โปรโมชันชุด 3 ขวดใหญ่</div>
+                            </div>
+                            <span class="text-xs font-bold text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-1 rounded-lg">315 ฿</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                            <div>
+                                <div class="text-xs font-semibold text-slate-200">Chang Cold Brew (ช้าง)</div>
+                                <div class="text-[10px] text-slate-400">โปรโมชันชุด 3 ขวดใหญ่</div>
+                            </div>
+                            <span class="text-xs font-bold text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-1 rounded-lg">295 ฿</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Mixers & Ice -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
+                    <h4 class="text-xs font-bold text-cyan-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                        <span>🧊</span> มิกเซอร์ & น้ำแข็ง
+                    </h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center">
+                            <span class="text-[11px] text-slate-300">น้ำแข็งเปล่า (ถัง)</span>
+                            <span class="text-xs font-bold text-sky-400">25 ฿</span>
+                        </div>
+                        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center">
+                            <span class="text-[11px] text-slate-300">น้ำโซดา</span>
+                            <span class="text-xs font-bold text-sky-400">25 ฿</span>
+                        </div>
+                        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center">
+                            <span class="text-[11px] text-slate-300">น้ำดื่ม / โค้ก</span>
+                            <span class="text-xs font-bold text-sky-400">25 ฿</span>
+                        </div>
+                        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center">
+                            <span class="text-[11px] text-slate-300">ชุดมิกเซอร์รวม</span>
+                            <span class="text-xs font-bold text-sky-400">100 ฿</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-VIEW: TABLE SELECTION -->
             <div id="viewTableBooking" class="hidden space-y-4">
                 <button onclick="switchTab(1)" class="text-xs bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg text-slate-300 flex items-center gap-1">← กลับหน้าหลัก</button>
                 
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
-                    <h3 id="bookingPubName" class="text-sm font-bold text-amber-500">ชื่อร้าน</h3>
+                    <h3 id="bookingPubName" class="text-sm font-bold text-sky-400">ชื่อร้าน</h3>
                     <p id="bookingPubZone" class="text-[11px] text-slate-400 mt-0.5">ที่ตั้ง</p>
                     <div class="flex gap-3 text-[10px] mt-3 pt-3 border-t border-slate-800">
-                        <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-emerald-500 rounded-full inline-block"></span> โต๊ะว่าง</div>
+                        <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-cyan-400 rounded-full inline-block"></span> โต๊ะว่าง</div>
                         <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-rose-500 rounded-full inline-block"></span> ไม่ว่าง</div>
                     </div>
                 </div>
@@ -66,7 +159,7 @@
                     <h4 class="text-xs font-bold text-slate-300 pb-2 border-b border-slate-800">📌 เลือกโต๊ะและช่วงเวลา</h4>
                     <div class="text-xs">
                         <label class="text-slate-400 block mb-1">ช่วงเวลาที่ต้องการ</label>
-                        <select id="timeSlot" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-slate-200">
+                        <select id="timeSlot" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-sky-500 text-slate-200">
                             <option>18:00 - 21:00 น.</option>
                             <option>21:00 - 00:00 น. (ช่วงพีค)</option>
                         </select>
@@ -75,81 +168,110 @@
                 </div>
             </div>
 
-            <!-- SUB-VIEW: BOOKING FORM & QR -->
+            <!-- SUB-VIEW: BOOKING FORM, PRE-ORDER & QR -->
             <div id="viewBookingForm" class="hidden space-y-4">
                 <button onclick="selectPub(selectedPub.id)" class="text-xs bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg text-slate-300 flex items-center gap-1">← เปลี่ยนโต๊ะ</button>
                 
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
-                    <h3 class="text-sm font-bold text-amber-500">📝 กรอกข้อมูลผู้จองโต๊ะ</h3>
-                    <p class="text-[11px] text-slate-400">ร้าน: <span id="formPubName" class="text-slate-200 font-bold"></span> | โต๊ะ: <span id="formTableName" class="text-amber-400 font-bold"></span></p>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">
+                    <div>
+                        <h3 class="text-sm font-bold text-sky-400">📝 กรอกข้อมูล & สั่งเครื่องดื่มล่วงหน้า</h3>
+                        <p class="text-[11px] text-slate-400">ร้าน: <span id="formPubName" class="text-slate-200 font-bold"></span> | โต๊ะ: <span id="formTableName" class="text-cyan-400 font-bold"></span></p>
+                    </div>
                     
-                    <div class="space-y-3 text-xs pt-2">
+                    <div class="space-y-3 text-xs border-t border-slate-800 pt-3">
                         <div>
                             <label class="text-slate-400 block mb-1">ชื่อ-นามสกุล ผู้จอง</label>
-                            <input type="text" id="inputBookerName" placeholder="เช่น นายศุภชัย ใจดี" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-amber-500 text-slate-200">
+                            <input type="text" id="inputBookerName" placeholder="เช่น นายศุภชัย ใจดี" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-sky-500 text-slate-200">
                         </div>
                         <div>
                             <label class="text-slate-400 block mb-1">เบอร์โทรศัพท์มือถือ</label>
-                            <input type="tel" id="inputBookerPhone" placeholder="089-123-4567" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-amber-500 text-slate-200">
+                            <input type="tel" id="inputBookerPhone" placeholder="089-123-4567" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-sky-500 text-slate-200">
                         </div>
                     </div>
 
-                    <div class="pt-3 border-t border-slate-800 text-center space-y-2">
-                        <div class="text-[11px] text-slate-300 font-semibold">ชำระค่ามัดจำโต๊ะ 50 บาท (PromptPay QR)</div>
-                        <div class="w-32 h-32 bg-white rounded-xl mx-auto flex items-center justify-center text-slate-950 font-bold text-[10px] p-2 text-center shadow-inner">
-                            [ QR PromptPay ]<br>50.00 THB
+                    <!-- PRE-ORDER DRINKS SECTION -->
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs font-bold text-sky-400">🍾 สั่งเครื่องดื่มล่วงหน้า (พร้อมเสิร์ฟทันที)</h4>
+                            <span class="text-[9px] bg-sky-500/10 text-sky-400 px-1.5 py-0.5 rounded border border-sky-500/20">Optional</span>
                         </div>
-                        <p class="text-[10px] text-slate-500">สแกนผ่านแอปธนาคารเพื่อล็อคสิทธิ์ทันที</p>
+                        <div id="menuListContainer" class="space-y-2 max-h-48 overflow-y-auto no-scrollbar pr-1">
+                            <!-- Dynamic Menu Items -->
+                        </div>
                     </div>
 
-                    <button onclick="confirmAndPay()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">ยืนยันการจอง & ชำระเงิน 50 บาท</button>
+                    <!-- PAYMENT SUMMARY -->
+                    <div class="bg-slate-950 rounded-xl p-3 border border-slate-800 space-y-1 text-xs">
+                        <div class="flex justify-between text-slate-400">
+                            <span>ค่ามัดจำโต๊ะ:</span>
+                            <span>50 บาท</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>ค่าเครื่องดื่ม Pre-order:</span>
+                            <span id="summaryDrinkPrice">0 บาท</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-slate-100 pt-1 border-t border-slate-800">
+                            <span>ยอดชำระสุทธิ:</span>
+                            <span id="summaryTotalPrice" class="text-cyan-400">50 บาท</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-1 text-center space-y-2">
+                        <div class="w-28 h-28 bg-white rounded-xl mx-auto flex items-center justify-center text-slate-950 font-bold text-[10px] p-2 text-center shadow-inner">
+                            [ QR PromptPay ]<br><span id="qrAmountDisplay" class="text-xs text-sky-600 font-mono">50.00 THB</span>
+                        </div>
+                        <p class="text-[10px] text-slate-500">สแกนผ่านแอปธนาคารเพื่อล็อคสิทธิ์และสั่งเครื่องดื่ม</p>
+                    </div>
+
+                    <button onclick="confirmAndPay()" class="w-full bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">ยืนยันการจอง & ชำระเงิน</button>
                 </div>
             </div>
 
-            <!-- TAB 2: TRACKING STATUS -->
+            <!-- TAB 3: TRACKING STATUS -->
             <div id="viewTracking" class="hidden space-y-4">
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-                    <h3 class="text-sm font-bold text-amber-500 text-center">🎫 รายละเอียดการจองโต๊ะ</h3>
+                    <h3 class="text-sm font-bold text-sky-400 text-center">🎫 รายละเอียดการจองโต๊ะ</h3>
                     
-                    <div class="space-y-2.5 text-xs border-y border-slate-800 py-3">
+                    <div class="space-y-2 text-xs border-y border-slate-800 py-3">
                         <div class="flex justify-between"><span class="text-slate-400">ชื่อผู้จอง:</span><span id="trackName" class="font-bold text-slate-200">--</span></div>
                         <div class="flex justify-between"><span class="text-slate-400">เบอร์โทร:</span><span id="trackPhone" class="font-bold text-slate-200">--</span></div>
                         <div class="flex justify-between"><span class="text-slate-400">ร้าน:</span><span id="trackPubName" class="font-bold text-slate-200">--</span></div>
-                        <div class="flex justify-between"><span class="text-slate-400">โต๊ะที่จอง:</span><span id="trackTableName" class="font-bold text-amber-400">--</span></div>
-                        <div class="flex justify-between"><span class="text-slate-400">มัดจำ:</span><span class="text-emerald-400">50 บาท (ชำระแล้ว)</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">โต๊ะที่จอง:</span><span id="trackTableName" class="font-bold text-sky-400">--</span></div>
+                        <div class="flex justify-between border-t border-slate-800/60 pt-2"><span class="text-slate-400">รายการ Pre-order:</span><span id="trackDrinks" class="font-bold text-slate-300 text-right max-w-[180px]">--</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">ยอดชำระแล้ว:</span><span id="trackTotalPaid" class="text-cyan-400 font-bold">50 บาท</span></div>
                     </div>
 
-                    <div class="space-y-2.5">
-                        <div class="flex items-center gap-3 text-xs text-emerald-400"><span class="w-4 h-4 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-[9px]">✓</span><span>1. ตรวจสอบสถานะโต๊ะว่าง</span></div>
-                        <div class="flex items-center gap-3 text-xs text-emerald-400"><span class="w-4 h-4 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-[9px]">✓</span><span>2. กรอกชื่อ-เบอร์โทรและเลือกเวลา</span></div>
-                        <div class="flex items-center gap-3 text-xs text-emerald-400"><span class="w-4 h-4 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-[9px]">✓</span><span>3. ชำระมัดจำ 50 บาทสำเร็จ</span></div>
-                        <div class="flex items-center gap-3 text-xs text-amber-400 font-bold"><span class="w-4 h-4 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[9px]">★</span><span>4. จองโต๊ะสำเร็จ (แสดง QR หน้างาน)</span></div>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-3 text-xs text-cyan-400"><span class="w-4 h-4 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center text-[9px]">✓</span><span>1. เลือกร้าน โต๊ะ และช่วงเวลา</span></div>
+                        <div class="flex items-center gap-3 text-xs text-cyan-400"><span class="w-4 h-4 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center text-[9px]">✓</span><span>2. สั่งเครื่องดื่ม/มิกเซอร์ ล่วงหน้า</span></div>
+                        <div class="flex items-center gap-3 text-xs text-cyan-400"><span class="w-4 h-4 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center text-[9px]">✓</span><span>3. ชำระเงินมัดจำรวมสำเร็จ</span></div>
+                        <div class="flex items-center gap-3 text-xs text-sky-400 font-bold"><span class="w-4 h-4 rounded-full bg-sky-400 text-slate-950 flex items-center justify-center text-[9px]">★</span><span>4. แสดง QR Code หน้างาน รับโต๊ะ+ชุดเครื่องดื่มทันที</span></div>
                     </div>
 
-                    <button onclick="switchTab(1)" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">กลับสู่หน้าหลัก</button>
+                    <button onclick="switchTab(1)" class="w-full bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">กลับสู่หน้าหลัก</button>
                 </div>
             </div>
 
-            <!-- TAB 3: MERCHANT PAYMENT / REVENUE -->
+            <!-- TAB 4: MERCHANT PAYMENT / REVENUE -->
             <div id="viewMerchantPayment" class="hidden space-y-4">
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2">
-                    <h3 class="text-sm font-bold text-amber-500">📊 ยอดชำระวันนี้</h3>
-                    <p class="text-[10px] text-slate-400">รายงานรายได้ค่ามัดจำโต๊ะสะสม</p>
+                    <h3 class="text-sm font-bold text-sky-400">📊 ยอดชำระและ Pre-Order วันนี้</h3>
+                    <p class="text-[10px] text-slate-400">รายงานรายได้มัดจำโต๊ะและรายการเครื่องดื่มล่วงหน้า</p>
                 </div>
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 text-xs">
                     <div class="flex justify-between py-2 border-b border-slate-800">
-                        <span class="text-slate-400">ยอดมัดจำรวม (50 บาท/โต๊ะ):</span>
-                        <span id="merchantDepositTotal" class="text-emerald-400 font-bold text-sm">0 บาท</span>
+                        <span class="text-slate-400">ยอดรวมทั้งหมด (มัดจำ + เครื่องดื่ม):</span>
+                        <span id="merchantDepositTotal" class="text-cyan-400 font-bold text-sm">0 บาท</span>
                     </div>
                     <p class="text-[10px] text-slate-500">* ยอดเงินโอนเข้าบัญชีร้านค้าโดยตรงผ่านระบบ PromptPay อัตโนมัติ</p>
                 </div>
             </div>
 
-            <!-- TAB 4: MERCHANT BOOKING LIST -->
+            <!-- TAB 5: MERCHANT BOOKING LIST -->
             <div id="viewMerchantBookings" class="hidden space-y-4">
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2">
-                    <h3 class="text-sm font-bold text-amber-500">📋 รายชื่อผู้จองโต๊ะล่าสุด</h3>
-                    <p class="text-[10px] text-slate-400">ตรวจสอบข้อมูลลูกค้าที่จองและโอนมัดจำแล้ว</p>
+                    <h3 class="text-sm font-bold text-sky-400">📋 รายชื่อผู้จองและรายการเสิร์ฟ</h3>
+                    <p class="text-[10px] text-slate-400">ตรวจสอบข้อมูลลูกค้า โต๊ะ และรายการเครื่องดื่มที่สั่งไว้</p>
                 </div>
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3">
                     <div id="merchantBookingList" class="space-y-2"></div>
@@ -158,27 +280,30 @@
 
         </main>
 
-        <!-- Bottom Navigation: Exactly 4 Tabs -->
-        <nav class="bg-slate-900 border-t border-slate-800 py-2 px-2 flex justify-around items-center absolute bottom-0 w-full z-30">
-            <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 text-center text-amber-500 text-[9px] font-semibold flex flex-col items-center gap-0.5">
-                <span class="text-base">🏠</span> หน้าแรก
+        <!-- Bottom Navigation: 5 Tabs -->
+        <nav class="bg-slate-900 border-t border-slate-800 py-2 px-1 flex justify-around items-center absolute bottom-0 w-full z-30">
+            <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 text-center text-sky-400 text-[8.5px] font-semibold flex flex-col items-center gap-0.5">
+                <span class="text-sm">🏠</span> หน้าแรก
             </button>
-            <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 text-center text-slate-400 text-[9px] font-semibold flex flex-col items-center gap-0.5">
-                <span class="text-base">🎫</span> การจอง
+            <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 text-center text-slate-400 text-[8.5px] font-semibold flex flex-col items-center gap-0.5">
+                <span class="text-sm">🍾</span> ราคาเครื่องดื่ม
             </button>
-            <button onclick="switchTab(3)" id="tabBtn3" class="flex-1 text-center text-slate-400 text-[9px] font-semibold flex flex-col items-center gap-0.5">
-                <span class="text-base">📊</span> ยอดชำระ
+            <button onclick="switchTab(3)" id="tabBtn3" class="flex-1 text-center text-slate-400 text-[8.5px] font-semibold flex flex-col items-center gap-0.5">
+                <span class="text-sm">🎫</span> การจอง
             </button>
-            <button onclick="switchTab(4)" id="tabBtn4" class="flex-1 text-center text-slate-400 text-[9px] font-semibold flex flex-col items-center gap-0.5">
-                <span class="text-base">📋</span> ผู้จอง
+            <button onclick="switchTab(4)" id="tabBtn4" class="flex-1 text-center text-slate-400 text-[8.5px] font-semibold flex flex-col items-center gap-0.5">
+                <span class="text-sm">📊</span> ยอดชำระ
+            </button>
+            <button onclick="switchTab(5)" id="tabBtn5" class="flex-1 text-center text-slate-400 text-[8.5px] font-semibold flex flex-col items-center gap-0.5">
+                <span class="text-sm">📋</span> ผู้จอง
             </button>
         </nav>
 
         <!-- Notification Toast -->
-        <div id="toastNotification" class="absolute top-14 left-4 right-4 bg-slate-900 border border-amber-500/50 rounded-xl p-3 shadow-xl transform -translate-y-28 transition-all duration-300 z-50 flex items-center gap-3">
+        <div id="toastNotification" class="absolute top-14 left-4 right-4 bg-slate-900 border border-sky-500/50 rounded-xl p-3 shadow-xl transform -translate-y-28 transition-all duration-300 z-50 flex items-center gap-3">
             <span class="text-lg">🔔</span>
             <div>
-                <h5 class="text-[11px] font-bold text-amber-400">แจ้งเตือนระบบ Bar Store</h5>
+                <h5 class="text-[11px] font-bold text-sky-400">แจ้งเตือนระบบ Bar Store</h5>
                 <p id="toastText" class="text-[10px] text-slate-300">อัปเดตสถานะเรียบร้อย</p>
             </div>
         </div>
@@ -187,6 +312,18 @@
 
     <!-- JavaScript Logic -->
     <script>
+        // Drink Menu Standard Master
+        const drinkMenuMaster = [
+            { id: 'm1', name: 'SangSom (แสงโสม 0.7L) + มิกเซอร์ 4', price: 490, icon: '🥃' },
+            { id: 'm2', name: 'Regency (รีเจนซี่ แบน) + มิกเซอร์ 3', price: 580, icon: '🥃' },
+            { id: 'm3', name: 'Leo Beer (โปร 3 ขวด)', price: 285, icon: '🍺' },
+            { id: 'm4', name: 'Singha Beer (โปร 3 ขวด)', price: 315, icon: '🍺' },
+            { id: 'm5', name: 'น้ำแข็งเปล่า (ถัง)', price: 25, icon: '🧊' },
+            { id: 'm6', name: 'ชุดมิกเซอร์เสริม (โซดา 2 + น้ำเปล่า 1 + น้ำแข็ง)', price: 100, icon: '🧊' }
+        ];
+
+        let drinkCart = {};
+
         let pubs = [
             {
                 id: 1,
@@ -203,7 +340,7 @@
             },
             {
                 id: 2,
-                name: "แคมเปอร์",
+                name: "แคมเปอร์ (Camper Bar)",
                 zone: "ในเมือง",
                 image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=500&auto=format&fit=crop&q=60",
                 gapCert: "GAP-PL-55902",
@@ -215,18 +352,19 @@
             },
             {
                 id: 3,
-                name: "เอวา",
+                name: "เอวา (Ava Club)",
                 zone: "ม.นเรศวร",
                 image: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=500&auto=format&fit=crop&q=60",
                 gapCert: "GAP-PL-55903",
                 tables: [
                     { id: 'E1', name: 'โซน VIP 1', status: 'available' },
-                    { id: 'E2', name: 'โซนบาร์หลัก 1', status: 'available' }
+                    { id: 'E2', name: 'โซนบาร์หลัก 1', status: 'available' },
+                    { id: 'E3', name: 'โซนกลาง A', status: 'booked' }
                 ]
             },
             {
                 id: 4,
-                name: "Library",
+                name: "Library Bar",
                 zone: "ในเมือง",
                 image: "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=500&auto=format&fit=crop&q=60",
                 gapCert: "GAP-PL-55904",
@@ -235,11 +373,150 @@
                     { id: 'L2', name: 'โซนด้านใน 2', status: 'available' },
                     { id: 'L3', name: 'โซนชั้นสอง 1', status: 'available' }
                 ]
+            },
+            {
+                id: 5,
+                name: "Woodstock Phitsanulok",
+                zone: "ม.นเรศวร",
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55905",
+                tables: [
+                    { id: 'WS1', name: 'โซนดนตรีสด 1', status: 'available' },
+                    { id: 'WS2', name: 'โซนดนตรีสด 2', status: 'available' },
+                    { id: 'WS3', name: 'โซนระเบียงนอก', status: 'booked' }
+                ]
+            },
+            {
+                id: 6,
+                name: "SAY PLAY Bar & Restaurant",
+                zone: "ม.นเรศวร",
+                image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55906",
+                tables: [
+                    { id: 'SP1', name: 'โซนหน้าจอใหญ่', status: 'available' },
+                    { id: 'SP2', name: 'โซนห้องแอร์', status: 'available' }
+                ]
+            },
+            {
+                id: 7,
+                name: "เสพสุข (Sepsuk Craft & Bar)",
+                zone: "ริมน้ำ",
+                image: "https://images.unsplash.com/photo-1574096079513-d8259312b785?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55907",
+                tables: [
+                    { id: 'SS1', name: 'ริมแม่น้ำน่าน 1', status: 'available' },
+                    { id: 'SS2', name: 'ริมแม่น้ำน่าน 2', status: 'booked' },
+                    { id: 'SS3', name: 'โซนคราฟต์บาร์', status: 'available' }
+                ]
+            },
+            {
+                id: 8,
+                name: "โรงเล่า (Rong Lao Phitsanulok)",
+                zone: "ในเมือง",
+                image: "https://images.unsplash.com/photo-1538488881523-2331160e1d00?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55908",
+                tables: [
+                    { id: 'RL1', name: 'โซนหน้าเวที A', status: 'available' },
+                    { id: 'RL2', name: 'โซนซุ้มไม้ B', status: 'available' },
+                    { id: 'RL3', name: 'โซนชั้นบน', status: 'booked' }
+                ]
+            },
+            {
+                id: 10,
+                name: "นั่งชิลล์ นเรศวร (Nang Chill NU)",
+                zone: "ม.นเรศวร",
+                image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55910",
+                tables: [
+                    { id: 'NC1', name: 'โซนซอยประตู 4', status: 'available' },
+                    { id: 'NC2', name: 'โซนบาร์สูง', status: 'booked' }
+                ]
+            },
+            {
+                id: 11,
+                name: "สนิมสรวล (Sanim Suan Bar)",
+                zone: "ริมน้ำ",
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55911",
+                tables: [
+                    { id: 'SM1', name: 'โซนติดน้ำ 1', status: 'available' },
+                    { id: 'SM2', name: 'โซนติดน้ำ 2', status: 'available' },
+                    { id: 'SM3', name: 'โซนในสวน', status: 'available' }
+                ]
+            },
+            {
+                id: 12,
+                name: "Indy Bar Phitsanulok",
+                zone: "ในเมือง",
+                image: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55912",
+                tables: [
+                    { id: 'ID1', name: 'โซนตรงกลาง A', status: 'booked' },
+                    { id: 'ID2', name: 'โซนริมกระจก', status: 'available' }
+                ]
+            },
+            {
+                id: 13,
+                name: "สายน่าน คราฟต์บาร์ (Sai Nan)",
+                zone: "ริมน้ำ",
+                image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55913",
+                tables: [
+                    { id: 'SN1', name: 'วิวแม่น้ำ A', status: 'available' },
+                    { id: 'SN2', name: 'วิวแม่น้ำ B', status: 'available' }
+                ]
+            },
+            {
+                id: 14,
+                name: "Good View Phitsanulok",
+                zone: "ริมน้ำ",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55914",
+                tables: [
+                    { id: 'GV1', name: 'ริมน้ำ VIP 1', status: 'available' },
+                    { id: 'GV2', name: 'ริมน้ำ VIP 2', status: 'booked' },
+                    { id: 'GV3', name: 'โซนเวทีกลาง', status: 'available' }
+                ]
+            },
+            {
+                id: 15,
+                name: "Deep Bar Phitsanulok",
+                zone: "ในเมือง",
+                image: "https://images.unsplash.com/photo-1574096079513-d8259312b785?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55915",
+                tables: [
+                    { id: 'DP1', name: 'โซนแดนซ์ A', status: 'available' },
+                    { id: 'DP2', name: 'โซนบาร์ B', status: 'available' }
+                ]
+            },
+            {
+                id: 17,
+                name: "โรงฮัก (Rong Huk Phitsanulok)",
+                zone: "ในเมือง",
+                image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55917",
+                tables: [
+                    { id: 'RH1', name: 'โซนดนตรีสด A1', status: 'available' },
+                    { id: 'RH2', name: 'โซนดนตรีสด A2', status: 'available' },
+                    { id: 'RH3', name: 'โซนบาร์กลาง B', status: 'booked' }
+                ]
+            },
+            {
+                id: 18,
+                name: "The Great Wall",
+                zone: "ในเมือง",
+                image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=500&auto=format&fit=crop&q=60",
+                gapCert: "GAP-PL-55918",
+                tables: [
+                    { id: 'GW1', name: 'โซนริมกำแพง A', status: 'available' },
+                    { id: 'GW2', name: 'โซน VIP 1', status: 'available' },
+                    { id: 'GW3', name: 'โซนกลางร้าน B', status: 'available' }
+                ]
             }
         ];
 
         let allBookings = [
-            { name: "คุณศุภชัย ใจดี", phone: "089-123-4567", pubId: 1, tableName: "โซนกลาง B1" }
+            { name: "คุณศุภชัย ใจดี", phone: "089-123-4567", pubId: 1, tableName: "โซนกลาง B1", drinks: "SangSom + มิกเซอร์ x1", totalPaid: 540 }
         ];
 
         let selectedPub = null;
@@ -268,7 +545,7 @@
         }
 
         function switchTab(tabIndex) {
-            ['viewCustomerHome', 'viewTableBooking', 'viewBookingForm', 'viewTracking', 'viewMerchantPayment', 'viewMerchantBookings'].forEach(id => {
+            ['viewCustomerHome', 'viewDrinkPrices', 'viewTableBooking', 'viewBookingForm', 'viewTracking', 'viewMerchantPayment', 'viewMerchantBookings'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
 
@@ -277,25 +554,28 @@
                 document.getElementById('topStoreSelectorContainer').classList.add('hidden');
                 renderPubList();
             } else if(tabIndex === 2) {
-                document.getElementById('viewTracking').classList.remove('hidden');
+                document.getElementById('viewDrinkPrices').classList.remove('hidden');
                 document.getElementById('topStoreSelectorContainer').classList.add('hidden');
             } else if(tabIndex === 3) {
+                document.getElementById('viewTracking').classList.remove('hidden');
+                document.getElementById('topStoreSelectorContainer').classList.add('hidden');
+            } else if(tabIndex === 4) {
                 document.getElementById('viewMerchantPayment').classList.remove('hidden');
                 document.getElementById('topStoreSelectorContainer').classList.remove('hidden');
                 renderMerchantTabsData();
-            } else if(tabIndex === 4) {
+            } else if(tabIndex === 5) {
                 document.getElementById('viewMerchantBookings').classList.remove('hidden');
                 document.getElementById('topStoreSelectorContainer').classList.remove('hidden');
                 renderMerchantTabsData();
             }
 
-            for(let i = 1; i <= 4; i++) {
+            for(let i = 1; i <= 5; i++) {
                 let btn = document.getElementById(`tabBtn${i}`);
                 if(i === tabIndex) {
                     btn.classList.remove('text-slate-400');
-                    btn.classList.add('text-amber-500');
+                    btn.classList.add('text-sky-400');
                 } else {
-                    btn.classList.remove('text-amber-500');
+                    btn.classList.remove('text-sky-400');
                     btn.classList.add('text-slate-400');
                 }
             }
@@ -318,10 +598,10 @@
 
             filtered.forEach(pub => {
                 let availCount = pub.tables.filter(t => t.status === 'available').length;
-                let badgeClass = availCount > 0 ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : "text-rose-400 bg-rose-500/10 border-rose-500/20";
+                let badgeClass = availCount > 0 ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" : "text-rose-400 bg-rose-500/10 border-rose-500/20";
                 
                 container.innerHTML += `
-                    <div onclick="selectPub(${pub.id})" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex gap-3 cursor-pointer hover:border-amber-500/50 transition">
+                    <div onclick="selectPub(${pub.id})" class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex gap-3 cursor-pointer hover:border-sky-500/50 transition">
                         <img src="${pub.image}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
                         <div class="flex-1 min-w-0">
                             <div class="flex justify-between items-start">
@@ -356,7 +636,7 @@
             grid.innerHTML = '';
             selectedPub.tables.forEach(t => {
                 let isAvail = t.status === 'available';
-                let style = isAvail ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400 cursor-pointer hover:bg-emerald-500/20" : "bg-rose-500/10 border-rose-500/30 text-rose-400 opacity-60 cursor-not-allowed";
+                let style = isAvail ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400 cursor-pointer hover:bg-cyan-500/20" : "bg-rose-500/10 border-rose-500/30 text-rose-400 opacity-60 cursor-not-allowed";
                 let action = isAvail ? `onclick="openBookingForm('${t.id}', '${t.name}')"` : '';
                 
                 grid.innerHTML += `
@@ -367,7 +647,7 @@
                 `;
             });
 
-            ['viewCustomerHome', 'viewBookingForm', 'viewTracking', 'viewMerchantPayment', 'viewMerchantBookings'].forEach(id => {
+            ['viewCustomerHome', 'viewDrinkPrices', 'viewBookingForm', 'viewTracking', 'viewMerchantPayment', 'viewMerchantBookings'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
             document.getElementById('viewTableBooking').classList.remove('hidden');
@@ -375,11 +655,73 @@
 
         function openBookingForm(tableId, tableName) {
             selectedTable = { id: tableId, name: tableName };
+            drinkCart = {};
+            
             document.getElementById('formPubName').innerText = selectedPub.name;
             document.getElementById('formTableName').innerText = tableName;
             
+            renderDrinkMenu();
+            updateDrinkTotals();
+
             document.getElementById('viewTableBooking').classList.add('hidden');
             document.getElementById('viewBookingForm').classList.remove('hidden');
+        }
+
+        function renderDrinkMenu() {
+            const container = document.getElementById('menuListContainer');
+            container.innerHTML = '';
+            drinkMenuMaster.forEach(item => {
+                let qty = drinkCart[item.id] || 0;
+                container.innerHTML += `
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="text-base">${item.icon}</span>
+                            <div>
+                                <div class="font-bold text-slate-200 text-[11px]">${item.name}</div>
+                                <div class="text-[10px] text-sky-400 font-bold">${item.price} ฿</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-lg px-2 py-1">
+                            <button onclick="changeDrinkQty('${item.id}', -1)" class="text-slate-400 font-bold px-1 hover:text-white">-</button>
+                            <span class="text-xs font-bold text-slate-100 min-w-[14px] text-center">${qty}</span>
+                            <button onclick="changeDrinkQty('${item.id}', 1)" class="text-sky-400 font-bold px-1 hover:text-sky-300">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function changeDrinkQty(drinkId, change) {
+            let current = drinkCart[drinkId] || 0;
+            let updated = current + change;
+            if(updated < 0) updated = 0;
+            drinkCart[drinkId] = updated;
+            renderDrinkMenu();
+            updateDrinkTotals();
+        }
+
+        function updateDrinkTotals() {
+            let drinkTotal = 0;
+            drinkMenuMaster.forEach(item => {
+                let qty = drinkCart[item.id] || 0;
+                drinkTotal += item.price * qty;
+            });
+
+            let netTotal = 50 + drinkTotal;
+            document.getElementById('summaryDrinkPrice').innerText = `${drinkTotal} บาท`;
+            document.getElementById('summaryTotalPrice').innerText = `${netTotal} บาท`;
+            document.getElementById('qrAmountDisplay').innerText = `${netTotal.toFixed(2)} THB`;
+        }
+
+        function getSelectedDrinksSummary() {
+            let items = [];
+            drinkMenuMaster.forEach(item => {
+                let qty = drinkCart[item.id] || 0;
+                if(qty > 0) {
+                    items.push(`${item.name} x${qty}`);
+                }
+            });
+            return items.length > 0 ? items.join(', ') : 'ไม่มี (จองเฉพาะโต๊ะ)';
         }
 
         function confirmAndPay() {
@@ -391,47 +733,71 @@
                 return;
             }
 
+            let drinkTotal = 0;
+            drinkMenuMaster.forEach(item => {
+                let qty = drinkCart[item.id] || 0;
+                drinkTotal += item.price * qty;
+            });
+            let netTotal = 50 + drinkTotal;
+
             let t = selectedPub.tables.find(x => x.id === selectedTable.id);
             if(t) t.status = 'booked';
 
-            bookingData = { name, phone, pubName: selectedPub.name, tableName: selectedTable.name };
+            let drinksSummary = getSelectedDrinksSummary();
+
+            bookingData = { 
+                name, 
+                phone, 
+                pubName: selectedPub.name, 
+                tableName: selectedTable.name,
+                drinks: drinksSummary,
+                totalPaid: netTotal
+            };
+
             allBookings.push({
                 name: name,
                 phone: phone,
                 pubId: selectedPub.id,
-                tableName: selectedTable.name
+                tableName: selectedTable.name,
+                drinks: drinksSummary,
+                totalPaid: netTotal
             });
 
             document.getElementById('trackName').innerText = bookingData.name;
             document.getElementById('trackPhone').innerText = bookingData.phone;
             document.getElementById('trackPubName').innerText = bookingData.pubName;
             document.getElementById('trackTableName').innerText = bookingData.tableName;
+            document.getElementById('trackDrinks').innerText = bookingData.drinks;
+            document.getElementById('trackTotalPaid').innerText = `${bookingData.totalPaid} บาท`;
 
-            switchTab(2);
-            showNotification("ชำระมัดจำ 50 บาทสำเร็จ! ล็อคโต๊ะเรียบร้อยแล้ว");
+            switchTab(3);
+            showNotification(`ชำระมัดจำและค่าเครื่องดื่มรวม ${netTotal} บาท สำเร็จ!`);
         }
 
         function renderMerchantTabsData() {
             let store = pubs.find(p => p.id === currentMerchantPubId);
+            let storeBookings = allBookings.filter(b => b.pubId === store.id);
 
-            let bookedCount = store.tables.filter(t => t.status === 'booked').length;
-            document.getElementById('merchantDepositTotal').innerText = `${bookedCount * 50} บาท (${bookedCount} โต๊ะ)`;
+            let totalRevenue = storeBookings.reduce((sum, b) => sum + (b.totalPaid || 50), 0);
+            document.getElementById('merchantDepositTotal').innerText = `${totalRevenue} บาท (${storeBookings.length} โต๊ะ)`;
 
             let bookingContainer = document.getElementById('merchantBookingList');
             bookingContainer.innerHTML = '';
-            let storeBookings = allBookings.filter(b => b.pubId === store.id);
 
             if(storeBookings.length === 0) {
                 bookingContainer.innerHTML = `<p class="text-[11px] text-slate-500 text-center py-4">ยังไม่มีประวัติการจองโต๊ะของร้านนี้</p>`;
             } else {
                 storeBookings.forEach(b => {
                     bookingContainer.innerHTML += `
-                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-xs flex justify-between items-center">
-                            <div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-xs flex flex-col gap-1.5">
+                            <div class="flex justify-between items-center">
                                 <div class="font-bold text-slate-200">${b.name}</div>
-                                <div class="text-[10px] text-slate-400">📞 ${b.phone} | โต๊ะ: <span class="text-amber-400">${b.tableName}</span></div>
+                                <span class="text-[9px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded">ชำระแล้ว ${b.totalPaid || 50}.-</span>
                             </div>
-                            <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">มัดจำ 50.-</span>
+                            <div class="text-[10px] text-slate-400">📞 ${b.phone} | โต๊ะ: <span class="text-sky-400 font-bold">${b.tableName}</span></div>
+                            <div class="text-[10px] bg-slate-900 p-1.5 rounded border border-slate-800/80 text-sky-300">
+                                🍾 Pre-order: ${b.drinks || 'ไม่มี'}
+                            </div>
                         </div>
                     `;
                 });
